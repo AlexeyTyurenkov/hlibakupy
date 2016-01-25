@@ -12,15 +12,22 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <h1>Profile Page</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
 
+
+    </div>
     <div class="row">
+        <div class="col-sm-6">
+            <%include /list %>
+        </div>
+
+
+    <div class="col-sm-6">
 
 
         <!-- FACEBOOK INFORMATION -->
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
 
@@ -34,7 +41,7 @@
             </div>
         </div>
         <!-- TWITTER INFORMATION -->
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="well">
                 <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
 
@@ -48,7 +55,7 @@
             </div>
         </div>
         <!-- VKONTAKTE INFORMATION -->
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="well">
                 <h3 class="text-info"><span class="fa fa-vk"></span> VKontakte</h3>
 
@@ -61,8 +68,8 @@
 
             </div>
         </div>
-
     </div>
+</div>
 
 </div>
 </body>

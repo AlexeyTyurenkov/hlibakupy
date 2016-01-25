@@ -69,12 +69,6 @@ function isLoggedIn(req, res, next) {
             failureRedirect : '/'
         }));
 
-    // route for logging out
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
-
     // TWITTER ROUTES ======================
     app.get('/auth/twitter', passport.authenticate('twitter'));
 
