@@ -1,9 +1,25 @@
+var mongoose = require('mongoose');
+
 module.exports = function(app, passport) {
 
     // HOME PAGE (with login links) ========
     app.get('/', function(req, res) {
-        res.render('index.ejs'); // load the index.ejs file
+      res.render('index.ejs'); // load the index.ejs file
     });
+
+    //app.get('/item',function(req, res) {
+    //    Item.findOne(function (err, item) {
+    //        if (!err) {
+    //           res.render('list.ejs',{
+    //               item:req.item
+    //           });
+    //        } else {
+    //            res.statusCode = 500;
+    //            log.error('Internal error(%d): %s', res.statusCode, err.message);
+    //            return res.send({error: 'Server error'});
+    //        }
+    //    });
+    //});
 
     // LOGIN ===============================
     // show the login form
