@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>Hlibakupy</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
@@ -13,17 +13,17 @@
 
     <div class="page-header text-center">
         <h1>Profile Page</h1>
+        <h2> Hello <%= user.twitter.username%></h2>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-
-
     </div>
     <div class="row">
-        <div class="col-sm-6">
-            <% include ../views/list %>
+
+        <div class="col-sm-9">
+           <% include ../views/list %>
         </div>
 
 
-    <div class="col-sm-6">
+    <div class="col-sm-3">
 
 
         <!-- FACEBOOK INFORMATION -->
