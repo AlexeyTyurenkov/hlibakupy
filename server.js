@@ -24,7 +24,7 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 //app.use(bodyParser()); // get information from html forms
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());// this will let us get the data from a POST
 
 app.set('view engine', 'ejs'); // set up ejs for templating
@@ -52,10 +52,11 @@ router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });
 });
 
-router.route('/items')
+router.route('/list')
     // create item (accessed at POST http://localhost:8080/api/items)
     .post(function(req, res) {
-
+            //res.send(req.body.item_name);
+            //res.send(req.body.item_count);
         var item = new Item();      // create a new instance of the Item model
         item.item_name = req.body.item_name;  // set the items name (comes from the request)
         item.count = req.body.count;
@@ -71,15 +72,17 @@ router.route('/items')
     })
     // get all the items (accessed at GET http://localhost:8080/api/items)
     .get(function(req, res) {
-        Item.find(function(err, items) {
+            Item.find(function(err, items) {
             if (err)
                 res.send(err);
-
-            res.json(items);
+            //res.send(items);
+            res.render('list.ejs',{
+                items:items.map(x => x.toObject())
+            });
         });
     });
 
-router.route('/items/:item_id')
+router.route('/list/:item_id')
 
     // get the item with that id (accessed at GET http://localhost:8080/api/items/:item_id)
     .get(function(req, res) {

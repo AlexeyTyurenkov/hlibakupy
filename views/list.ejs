@@ -1,3 +1,17 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>List</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+
 <div class="text-center">
         <h1 class="text-success"><span class="fa fa-list-alt"></span> My list </h1>
 </div>
@@ -21,14 +35,22 @@
 
 
             <div id="content">
+                <% for (keya in items[0]){ %>
+                    <%= keya %>
+                <%}; %>
                 <h3 class="text-primary"> List</h3>
-
+                <ul>
+                    <% [].slice.call(items, 0).forEach(function(item) { %>
+                    <li><%= item.item_name + "-" + item.item_count %></li>
+                    <% }); %> %>
+                </ul>
 
 
 
             </div>
         </div>
-
-    </div>
+    </div> </div>
+</body>
+</html>
 <!--http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-typeahead.php-->
 

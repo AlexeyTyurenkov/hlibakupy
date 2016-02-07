@@ -38,9 +38,15 @@ module.exports = function(app, passport) {
     // PROFILE SECTION =====================
     app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
+            user : req.user// get the user out of session and pass to template
         });
     });
+    app.get('/list', function(req, res,items) {
+        res.render('list.ejs', {
+            items: req.body.items// get the item out of session and pass to template
+        });
+    });
+
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
