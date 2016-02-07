@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <h1 class="text-success"><span class="fa fa-list-alt"></span> My list </h1>
-            <form method="post" action="/list">
+            <form method="post" action="/">
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="input-group">
@@ -26,7 +26,10 @@
                                 <input type="text" name="quantity" class="form-control" placeholder="Product quantity">
                             </span>
                             <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="submit"><span class=" glyphicon glyphicon-shopping-cart">+</span></button>
+                                <button class="btn btn-secondary" type="submit"><span class="glyphicon glyphicon-shopping-cart">+</span></button>
+                            </span>
+                             <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="reset"><span class="glyphicon glyphicon-trash"></span></button>
                             </span>
                         </div>
                     </div>
@@ -42,6 +45,8 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Quantity</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +55,9 @@
                             <td><%= a %></td>
                             <td><%= items[i].item_name %></td>
                             <td><%= typeof items[i].quantity!='undefined' ? items[i].quantity : '-' %></td>
+                            <td><a href="/put/<%= items[i]._id %>"><i class="fa fa-pencil fa-fw"></i></a></td>
+                            <td><a href="/delete/<%= items[i]._id %>"><i class="fa fa-times"></i></a></td>
+                            <td><%= items[i]._id %></td>
                         </tr>
                         <% } %>
                     </tbody>

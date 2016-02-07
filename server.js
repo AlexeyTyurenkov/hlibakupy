@@ -103,6 +103,7 @@ router.route('/list/:item_id')
 
         item.item_name = req.body.item_name;  // update the items info
         item.quantity = req.body.quantity;
+        item._id = req.body._id;
 
         // save the item
         item.save(function(err) {
@@ -121,10 +122,13 @@ router.route('/list/:item_id')
         }, function(err, item) {
             if (err)
                 res.send(err);
-
-            res.json({ message: 'Successfully deleted' });
+            res.render('list.ejs',{
+                items:items.map(x => x.toObject())
         });
-    });
+
+        //    res.json({ message: 'Successfully deleted' });
+        });
+    })
 
 
 // REGISTER OUR ROUTES -------------------------------
