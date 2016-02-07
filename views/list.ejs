@@ -5,51 +5,59 @@
     <title>List</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <style>
         body        { padding-top:80px; word-wrap:break-word; }
     </style>
 </head>
 <body>
 <div class="container">
-
-<div class="text-center">
-        <h1 class="text-success"><span class="fa fa-list-alt"></span> My list </h1>
-</div>
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-            <form method="post" action="/">
+            <h1 class="text-success"><span class="fa fa-list-alt"></span> My list </h1>
+            <form method="post" action="/list">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-sm-8">
                         <div class="input-group">
                             <input id="itemName" type="text" name="item_name" class="form-control" placeholder="Product name">
-                            <span class="input-group-btn" style="width:120px">
-                                <input type="text" name="item_count" class="form-control" placeholder="Product count">
+                            <span class="input-group-btn" style="width:130px">
+                                <input type="text" name="quantity" class="form-control" placeholder="Product quantity">
                             </span>
                             <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button"><span class=" glyphicon glyphicon-shopping-cart">+</span></button>
+                                <button class="btn btn-secondary" type="submit"><span class=" glyphicon glyphicon-shopping-cart">+</span></button>
                             </span>
                         </div>
                     </div>
                 </div>
             </form>
 
-
-            <div id="content">
-                <% for (keya in items[0]){ %>
-                    <%= keya %>
-                <%}; %>
-                <h3 class="text-primary"> List</h3>
-                <ul>
-                    <% [].slice.call(items, 0).forEach(function(item) { %>
-                    <li><%= item.item_name + "-" + item.item_count %></li>
-                    <% }); %> %>
-                </ul>
-
-
-
+            <div id="content" class="col-sm-8">
+                <h3 class="text-primary">My list of items</h3>
+                <p>choose some item for edit</p>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="success">
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% for(var i= 0, a = 1; i < [].slice.call(items, 0).length; i++,a++) { %>
+                        <tr>
+                            <td><%= a %></td>
+                            <td><%= items[i].item_name %></td>
+                            <td><%= typeof items[i].quantity!='undefined' ? items[i].quantity : '-' %></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div> </div>
+    </div><!--div class="row"-->
+</div><!--div class="container"-->
 </body>
 </html>
 <!--http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-typeahead.php-->

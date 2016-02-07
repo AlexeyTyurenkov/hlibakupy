@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var itemSchema = mongoose.Schema({
    item:{
          item_name : String,
-        item_count : String
+          quantity : String
        }
 });
 module.exports = mongoose.model('Item', itemSchema);

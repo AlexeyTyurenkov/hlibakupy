@@ -55,18 +55,18 @@ router.get('/', function(req, res) {
 router.route('/list')
     // create item (accessed at POST http://localhost:8080/api/items)
     .post(function(req, res) {
-            //res.send(req.body.item_name);
-            //res.send(req.body.item_count);
         var item = new Item();      // create a new instance of the Item model
         item.item_name = req.body.item_name;  // set the items name (comes from the request)
-        item.count = req.body.count;
+        item.quantity = req.body.quantity;
 
         // save the item and check for errors
         item.save(function(err) {
             if (err)
                 res.send(err);
 
-            res.json({ message: 'Item created!' });
+            res.render('list.ejs',{
+                items:items.map(x => x.toObject())
+        });
         });
 
     })
@@ -75,7 +75,6 @@ router.route('/list')
             Item.find(function(err, items) {
             if (err)
                 res.send(err);
-            //res.send(items);
             res.render('list.ejs',{
                 items:items.map(x => x.toObject())
             });
@@ -103,7 +102,7 @@ router.route('/list/:item_id')
             res.send(err);
 
         item.item_name = req.body.item_name;  // update the items info
-        item.count = req.body.count;
+        item.quantity = req.body.quantity;
 
         // save the item
         item.save(function(err) {

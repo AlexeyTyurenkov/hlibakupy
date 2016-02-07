@@ -7,20 +7,6 @@ module.exports = function(app, passport) {
       res.render('index.ejs'); // load the index.ejs file
     });
 
-    //app.get('/item',function(req, res) {
-    //    Item.findOne(function (err, item) {
-    //        if (!err) {
-    //           res.render('list.ejs',{
-    //               item:req.item
-    //           });
-    //        } else {
-    //            res.statusCode = 500;
-    //            log.error('Internal error(%d): %s', res.statusCode, err.message);
-    //            return res.send({error: 'Server error'});
-    //        }
-    //    });
-    //});
-
     // LOGIN ===============================
     // show the login form
     app.get('/login', function(req, res) {
@@ -42,6 +28,11 @@ module.exports = function(app, passport) {
         });
     });
     app.get('/list', function(req, res,items) {
+        res.render('list.ejs', {
+            items: req.body.items// get the item out of session and pass to template
+        });
+    });
+    app.post('/list', function(req, res,items) {
         res.render('list.ejs', {
             items: req.body.items// get the item out of session and pass to template
         });
