@@ -21,15 +21,15 @@
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="input-group">
-                            <input id="itemName" type="text" name="item_name" class="form-control" placeholder="Product name">
+                            <input id="itemName" autocomplete="off" type="text" name="item_name" class="form-control" placeholder="Product name">
                             <span class="input-group-btn" style="width:130px">
-                                <input type="text" name="quantity" class="form-control" placeholder="Product quantity">
+                                <input type="text" autocomplete="off" name="quantity" class="form-control" placeholder="Product quantity">
                             </span>
                             <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="submit"><span class="glyphicon glyphicon-shopping-cart">+</span></button>
+                                <button class="btn btn-secondary" type="submit" data-toggle="tooltip" title="Додати"><span class="glyphicon glyphicon-shopping-cart">+</span></button>
                             </span>
                              <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="reset"><span class="glyphicon glyphicon-trash"></span></button>
+                                <button class="btn btn-secondary" type="reset"   data-toggle="tooltip" title="Очистити поля вводу"><span class="glyphicon glyphicon-trash"></span></button>
                             </span>
                         </div>
                     </div>
@@ -41,25 +41,26 @@
                 <p>choose some item for edit</p>
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr class="success">
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Quantity</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
+                    <tr class="success">
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Delete</th>
+                        <th>Item id</th>
+                    </tr>
                     </thead>
                     <tbody>
-                    <% for(var i= 0, a = 1; i < [].slice.call(items, 0).length; i++,a++) { %>
-                        <tr>
-                            <td><%= a %></td>
-                            <td><%= items[i].item_name %></td>
-                            <td><%= typeof items[i].quantity!='undefined' ? items[i].quantity : '-' %></td>
-                            <td><a href="/put/<%= items[i]._id %>"><i class="fa fa-pencil fa-fw"></i></a></td>
-                            <td><a href="/delete/<%= items[i]._id %>"><i class="fa fa-times"></i></a></td>
-                            <td><%= items[i]._id %></td>
-                        </tr>
-                        <% } %>
+                    <% for(var i= 0, a = 1; i < Array.prototype.slice.call(items, 0).length; i++,a++) { %>
+
+                    <tr onclick="clickLink(this)">
+                        <td><%= a %></td>
+                        <td > <a href="/edit/<%= items[i]._id %>"><%= items[i].item_name %></a></td>
+                       <td><%= typeof items[i].quantity!='undefined' ? items[i].quantity : '-' %></td>
+                        <!--<td><i class="fa fa-pencil fa-fw"></i></a></td>-->
+                        <td><a href="/delete/<%= items[i]._id %>"><i class="fa fa-times"></i></a></td>
+                        <td><%= items[i]._id %></td>
+                    </tr>
+                    <% } %>
                     </tbody>
                 </table>
             </div>
@@ -70,3 +71,8 @@
 </html>
 <!--http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-typeahead.php-->
 
+<script type="text/javascript">
+    function clickLink(elem){
+        location = elem.getElementsByTagName("a")[0].getAttribute("href");
+    }
+</script>
